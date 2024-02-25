@@ -4,32 +4,28 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const todoList = [
+    { id: 1, title: 'Create an empty array and store it in a variable called todoList' },
+    { id: 2, title: 'Create at least 3 objects with the required properties' },
+    { id: 3, title: 'Insert a JavaScript expression in the unordered list' },
+    { id: 4, title: 'Create a level one heading' },
+    { id: 5, title: 'Create an ordered list' },
+    { id: 6, title: 'Assign the todoList array in the JavaScript expression' },
+    { id: 7, title: 'Return a list item (<li>) for each object in the array' },    
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>To do list</h1>
+      <ul>
+        {todoList.map((todo) => (
+          <li key={todo.id}>
+            <strong>{todo.id}</strong>: {todo.title}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+  export default App
