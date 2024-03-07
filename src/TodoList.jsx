@@ -1,5 +1,3 @@
-import AddTodoForm from './AddTodoForm';
-
 function TodoList() {
   const todoList = [
     { id: 1, title: 'Create an empty array and store it in a variable called todoList.' },
@@ -13,8 +11,6 @@ function TodoList() {
 
   return (
     <div>
-      <h1>To do list</h1>
-      <AddTodoForm />
       <ul>
         {todoList.map((todo) => (
           <li key={todo.id}>
