@@ -1,20 +1,8 @@
-/* function AddTodoForm() 
-{
-  return (
-    <form>
-      <label htmlFor="todoTitle">Title:</label>
-      <input type="text" id="todoTitle" />
-      <button type="submit">Add</button>
-    </form>
-  );
-}
-export default AddTodoForm; ***1_1 and 1_2 class, start, last part***/
+
 
 import React, { useState } from 'react';
 
-const AddTodoForm = (props) => {
-
-  const { onAddTodo } = props;
+const AddTodoForm = ({ onAddTodo }) => {
 
   const [todoTitle, setTodoTitle] = React.useState('');
 
