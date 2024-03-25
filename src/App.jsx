@@ -1,21 +1,20 @@
-import "./App.css";
-import TodoList from "./TodoList"; /**** Class 1_1 and 1_2  ***/ 
+
 import React, { useState } from 'react';
+import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
+import "./App.css";
 
 function App() {
-  // hook useState
-  const [newTodo, setNewTodo] = useState('');
+  const [todoList, setTodoList] = useState([]); 
 
   return (
-    <div>     
+    <div>
       <h1>To do list</h1>
-      <TodoList />
-      <hr />
-      <AddTodoForm onAddTodo={setNewTodo} />
-      <p>New Todo: <span>{newTodo}</span></p>
+      <AddTodoForm onAddTodo={(newTodo) => setTodoList([...todoList, newTodo])/*spread operator/*/} />
+      <TodoList todoList={todoList} />
     </div>
   );
 }
 
 export default App;
+
