@@ -7,7 +7,8 @@ function AddTodoForm({ onAddTodo }) {
     setTodoTitle(event.target.value);
   };
 
-  const handleAddTodo = () => {
+  const handleAddTodo = (event) => {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
     const newTodo = {
       id: Date.now(), //identificador único temporal
       title: todoTitle
@@ -18,10 +19,14 @@ function AddTodoForm({ onAddTodo }) {
 
   return (
     <div>
-      <input type="text" value={todoTitle} onChange={handleTitleChange} />
-      <button onClick={handleAddTodo}>Add Todo</button>
+      <form onSubmit={handleAddTodo}> 
+        <label htmlFor="todoTitle">Fill: </label>
+        <input type="text" id="todoTitle" name="todoTitle" value={todoTitle} onChange={handleTitleChange} required/>
+        <button type="submit">Add Todo</button>
+      </form>  
     </div>
   );
 }
 
 export default AddTodoForm;
+
