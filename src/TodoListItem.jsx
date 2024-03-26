@@ -1,12 +1,13 @@
-const TodoListItem = ({ props }) => {
-//first part
+const TodoListItem = ({ id, title }) => {
+  // Desestructurar props
+  // Pude colocar cualquier valor prop
+
   return (
     <li>
-      <strong>ID:</strong> {props.id} 
-      <strong>Title:</strong> {props.title}
-      <hr />
+      <strong>{title}</strong> 
     </li>
   );
 }
 
 export default TodoListItem;
+
