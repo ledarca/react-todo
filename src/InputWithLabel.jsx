@@ -10,14 +10,7 @@ const InputWithLabel = ({ id, type, value, onChange }) => {
   return (
     <>
       <label htmlFor={id}>Title:</label>
-      <input
-        ref={inputRef}
-        id={id}
-        type={type}
-        value={value}
-        onChange={onChange}
-        autoFocus
-      />
+      <input ref={inputRef} id={id} type={type} value={value} onChange={onChange} autoFocus />
     </>
   );
 };
