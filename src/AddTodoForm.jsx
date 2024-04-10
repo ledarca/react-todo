@@ -21,7 +21,7 @@ function AddTodoForm({ onAddTodo }) {
   return (
     <div>
       <form> 
-        <InputWithLabel label="Title:" todoTitle={todoTitle} onInputChange={handleTitleChange}/>
+        <InputWithLabel label="Title:" value={todoTitle} onChange={handleTitleChange} autoFocus={true}/>
         <button type="button" onClick={handleAddTodo}>Add Todo</button>
       </form>  
     </div>
