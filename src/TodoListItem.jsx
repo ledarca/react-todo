@@ -1,7 +1,6 @@
 import React from "react";
 
-  const TodoListItem = ({todo, onRemoveTodo }) => {
-    const{id, title} = todo;
+  const TodoListItem = ({ id, title, onRemoveTodo }) => {
 
     const handleRemoveTodo = () => {
       onRemoveTodo(id);
@@ -16,4 +15,3 @@ import React from "react";
 }
 
 export default TodoListItem;
-

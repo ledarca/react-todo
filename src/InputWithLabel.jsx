@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const InputWithLabel = ({ id, type, value, onChange }) => {
+const InputWithLabel = ({ id, children, value, onChange }) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -9,10 +9,10 @@ const InputWithLabel = ({ id, type, value, onChange }) => {
 
   return (
     <>
-      <label htmlFor={id}>Title:</label>
-      <input ref={inputRef} id={id} type={type} value={value} onChange={onChange} autoFocus />
+      <label htmlFor={id}>{children}</label> 
+      <input id={id} type="text" name="title" value={value} onChange={onChange} ref={inputRef} />
     </>
   );
-};
+}
 
 export default InputWithLabel;
