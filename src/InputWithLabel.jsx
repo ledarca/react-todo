@@ -1,13 +1,15 @@
 import React, { useRef, useEffect } from 'react';
 
 const InputWithLabel = ({ id, children, value, onChange }) => {
+ // console.log('Componente InputWithLabel renderizado');
   const inputRef = useRef(null);
 
   useEffect(() => {
+   // console.log('useEffect ejecutado');
     inputRef.current.focus();
-  }, []);
-
-  return (
+  }, [value]);
+  
+   return (
     <>
       <label htmlFor={id}>{children}</label> 
       <input id={id} type="text" name="title" value={value} onChange={onChange} ref={inputRef} />
@@ -16,3 +18,4 @@ const InputWithLabel = ({ id, children, value, onChange }) => {
 }
 
 export default InputWithLabel;
+
