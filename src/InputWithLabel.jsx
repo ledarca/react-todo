@@ -1,13 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 
 const InputWithLabel = ({ id, children, value, onChange }) => {
- // console.log('Componente InputWithLabel renderizado');
+  //console.log('Componente InputWithLabel renderizado');
   const inputRef = useRef(null);
 
   useEffect(() => {
-   // console.log('useEffect ejecutado');
+    //console.log('useEffect ejecutado');
     inputRef.current.focus();
-  }, [value]);
+  //  inputRef.current.style.border = '5px solid red'; I use this, just to highlight the focus
+  });
   
    return (
     <>
@@ -18,4 +19,3 @@ const InputWithLabel = ({ id, children, value, onChange }) => {
 }
 
 export default InputWithLabel;
-
