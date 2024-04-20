@@ -8,7 +8,7 @@ import React from "react";
 
   return (
     <li>
-      <strong>{title}</strong> 
+      <strong>{title} -- </strong> 
       <button type="button" onClick={handleRemoveTodo}>Remove</button>
     </li>
   );
