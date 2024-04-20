@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import InputWithLabel from './InputWithLabel';
 
 function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
@@ -8,9 +9,9 @@ function AddTodoForm({ onAddTodo }) {
   };
 
   const handleAddTodo = (event) => {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
+    event.preventDefault(); // Prevent Default Form Behavior
     const newTodo = {
-      id: Date.now(), //identificador único temporal
+      id: Date.now(), //Temporary Unique Identifier
       title: todoTitle
     };
     onAddTodo(newTodo);
@@ -18,15 +19,11 @@ function AddTodoForm({ onAddTodo }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleAddTodo}> 
-        <label htmlFor="todoTitle">Fill: </label>
-        <input type="text" id="todoTitle" name="todoTitle" value={todoTitle} onChange={handleTitleChange} required/>
-        <button type="submit">Add Todo</button>
-      </form>  
-    </div>
+    <form onSubmit={handleAddTodo}>
+      <InputWithLabel id={todoTitle} value={todoTitle} onChange={handleTitleChange} > Title: </InputWithLabel>
+      <button type="submit">Add</button>
+    </form>
   );
 }
 
 export default AddTodoForm;
-
