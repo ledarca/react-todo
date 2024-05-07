@@ -31,7 +31,7 @@ function App() {
           createTime: record.createdTime
         }));
         //console.log('Todos:', todos); 
-        setTodoList(todos);
+        setTodoList(...todos);
         localStorage.setItem('todoList', JSON.stringify(todos)); //save data, localstorage
       } catch (error) {
         console.error('Error fetching data:', error.message);
