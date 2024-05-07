@@ -4,10 +4,15 @@ import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
 function App() {
-  
+
   const storedTodoList = JSON.parse(localStorage.getItem('todoList')) || [];
   const [todoList, setTodoList] = useState(storedTodoList);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Function to update todoList state
+  const updateTodoList = (newTodoList) => {
+    setTodoList([...newTodoList]);
+  };
 
   // Load initial data and save to localStorage
   useEffect(() => {
@@ -31,7 +36,7 @@ function App() {
           createTime: record.createdTime
         }));
         //console.log('Todos:', todos); 
-        setTodoList(...todos);
+        updateTodoList(todos); // Update todoList status
         localStorage.setItem('todoList', JSON.stringify(todos)); //save data, localstorage
       } catch (error) {
         console.error('Error fetching data:', error.message);
@@ -42,15 +47,20 @@ function App() {
     fetchData();
   }, []);
 
-  // Function to add tasks
+  // Funtion to add tasks
   const addTodo = (newTodo) => {
-    setTodoList([...todoList, newTodo]);
+    setTodoList(prevTodoList => {
+      const updatedTodoList = [...prevTodoList, newTodo];
+      localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
+      return updatedTodoList;
+    });
   };
 
-  // Function to remove a todo
+  // Funtion to remove a todo
   const removeTodo = (id) => {
     const updatedTodoList = todoList.filter(todo => todo.id !== id);
     setTodoList(updatedTodoList);
+    localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
   };
 
   // Render the component
