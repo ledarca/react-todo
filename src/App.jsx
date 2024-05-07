@@ -4,7 +4,9 @@ import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
 function App() {
-  const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem('todoList')) ?? []);
+    // Recuperar los datos de localStorage
+  const storedTodoList = JSON.parse(localStorage.getItem('todoList')) || [];
+  const [todoList, setTodoList] = useState(storedTodoList);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load initial data and save to localStorage
