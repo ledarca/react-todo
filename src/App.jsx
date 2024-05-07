@@ -22,7 +22,7 @@ function App() {
         };
         const response = await fetch(url, options);
         if (!response.ok) {
-          throw new Error('Error: ${response.status}');
+          throw new Error(`Error: ${response.status}`);
         }
         const data = await response.json();
         const todos = data.records.map(record => ({
