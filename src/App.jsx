@@ -1,7 +1,10 @@
 import "./App.css";
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
+
+const airtableURL = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
 function App() {
   
@@ -19,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+        const url = airtableURL;
         const options = {
           method: 'GET',
           headers: {
@@ -52,14 +55,14 @@ function App() {
   const addTodo = async (newTodo) => {
     try {
       const currentDate = new Date().toISOString().slice(0, 10);
-      const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+      const url = airtableURL;
       const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`
         },
-        body: JSON.stringify({ fields: { title: newTodo.title, completedAt: currentDate } }) //Include the formatted date in the body of the request
+        body: JSON.stringify({ fields: { title: newTodo.title, completedAt: currentDate } }) // Include the formatted date in the body of the request
       };
       const response = await fetch(url, options);
       if (!response.ok) {
@@ -70,7 +73,7 @@ function App() {
         id: responseData.id,
         title: responseData.fields.title,
         createTime: responseData.fields.createdTime,
-        completedAt: responseData.fields.completedAt //Include the formatted date in the task object
+        completedAt: responseData.fields.completedAt // Include the formatted date in the task object
       };
       setTodoList(prevTodoList => [...prevTodoList, newTodoItem]);
       localStorage.setItem('todoList', JSON.stringify([...todoList, newTodoItem]));
@@ -83,7 +86,7 @@ function App() {
   // Function to remove an existing task
   const removeTodo = async (id) => {
     try {
-      const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}/${id}`;
+      const url = `${airtableURL}/${id}`; 
       const options = {
         method: 'DELETE',
         headers: {
@@ -104,14 +107,29 @@ function App() {
   };
   
   return (
-    <>
-      <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/" 
+          element={ 
+            <>
+              <h1>Todo List</h1>
+              <AddTodoForm onAddTodo={addTodo} />
+              {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
+            </>
+          }
+        />
+        <Route
+          path="/new" 
+          element={<h1>New Todo List</h1>} 
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+
 
 
