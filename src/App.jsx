@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
+const airtableURL = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+
 function App() {
   
   // Load todoList from localStorage or initialize it as an empty array
@@ -19,7 +21,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+        const url = airtableURL;
         const options = {
           method: 'GET',
           headers: {
@@ -52,7 +54,7 @@ function App() {
   const addTodo = async (newTodo) => {
     try {
       const currentDate = new Date().toISOString().slice(0, 10);
-      const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+      const url = airtableURL;
       const options = {
         method: 'POST',
         headers: {
@@ -83,7 +85,7 @@ function App() {
   // Function to remove an existing task
   const removeTodo = async (id) => {
     try {
-      const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}/${id}`;
+      const url = `${airtableURL}/${id}`; 
       const options = {
         method: 'DELETE',
         headers: {
