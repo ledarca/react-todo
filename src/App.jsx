@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
@@ -61,7 +62,7 @@ function App() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`
         },
-        body: JSON.stringify({ fields: { title: newTodo.title, completedAt: currentDate } }) //Include the formatted date in the body of the request
+        body: JSON.stringify({ fields: { title: newTodo.title, completedAt: currentDate } }) // Include the formatted date in the body of the request
       };
       const response = await fetch(url, options);
       if (!response.ok) {
@@ -72,7 +73,7 @@ function App() {
         id: responseData.id,
         title: responseData.fields.title,
         createTime: responseData.fields.createdTime,
-        completedAt: responseData.fields.completedAt //Include the formatted date in the task object
+        completedAt: responseData.fields.completedAt // Include the formatted date in the task object
       };
       setTodoList(prevTodoList => [...prevTodoList, newTodoItem]);
       localStorage.setItem('todoList', JSON.stringify([...todoList, newTodoItem]));
@@ -106,14 +107,29 @@ function App() {
   };
   
   return (
-    <>
-      <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/" 
+          element={ 
+            <>
+              <h1>Todo List</h1>
+              <AddTodoForm onAddTodo={addTodo} />
+              {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
+            </>
+          }
+        />
+        <Route
+          path="/new" 
+          element={<h1>New Todo List</h1>} 
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+
 
 
