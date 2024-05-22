@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
-import NumberGuessingGame from './NumberGuessingGame'; 
 
 const airtableURL = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
@@ -109,20 +108,24 @@ function App() {
   
   return (
     <BrowserRouter>
+     <div className="app-container">
       <Routes>
         <Route
           path="/" 
           element={ 
             <>
-              <h1>Todo List</h1>
+              <header><h1>To do list</h1></header>              
+              <main>
               <AddTodoForm onAddTodo={addTodo} />
               {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
+              </main>
+              <footer>&copy; 2024</footer>
             </>
           }
         />
         <Route path="/new" element={<h1>New Todo List</h1>} />
-        <Route path="/NumberGuessingGame" element={<NumberGuessingGame />} />       
       </Routes>
+      </div>
     </BrowserRouter>
   );
 }
