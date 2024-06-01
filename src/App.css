@@ -1,42 +1,246 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Reset */
+@import url(./reset.css);
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
+/* Define application styles here */
+
+body {
+  font-family: 'Major Mono Display', monospace;
+  background: linear-gradient(-45deg, #385DA6, #6C7A8C, #5A90BF, #444c4f,  #385DA6);
+  background-size: 400% 400%;
+  animation: gradient 15s ease forwards;
+  margin: 0;
+  padding: 0;
+}
+
+/* Animation for gradient background */
+@keyframes gradient {
+  0% {
+      background-position: 0% 25%;
+  }
+  25% {
+      background-position: 100% 50%;
+  }
+  50% {
+      background-position: 0% 50%;
+  }
+  75% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+/* Container for the entire app */
+.app-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Header styles */
+header {
   text-align: center;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 10px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Main heading styles */
+h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #403f3f;
+} 
+
+/* Subheading styles */
+h2{
+  font-size: 16px;
+  font-weight: 200;
+  margin: 0;
+  color: #817e7e;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Styles for input section */
+.input-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 2px solid #eaeaea;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Text input styles */
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #eaeaea;
+  border-radius: 4px;
+  margin-right: 10px;
 }
 
-.card {
-  padding: 2em;
+/* Button styles */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.read-the-docs {
+/* Hover effect for buttons */
+button:hover {
+  background-color: #45a049;
+}
+
+/* Styles for the section containing tasks */
+.tasks-section {
+  padding: 20px 0;
+}
+
+/* Unordered list styles */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Individual task item styles */
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+}
+
+/* Alternate background color for task items */
+li:nth-child(even) {
+  background-color: #eaeaea;
+}
+
+/* Styles for task text */
+li .task-text {
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+/* Button styles within task items */
+li button {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+/* Hover effect for task item buttons */
+li button:hover {
+  background-color: #e53e3e;
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 10px;
   color: #888;
+  border-top: 2px solid #eaeaea;
+  margin-top: 20px;
+}
+
+/* Button and remove-task styles */
+.input-section button,
+.remove-task {
+  position: relative; /* Ensure pseudo-elements are positioned correctly */
+  font-size: 0; /* Hide any text inside the button */
+  color: #fff; /* Icon color */
+  cursor: pointer; /* Change cursor on hover */
+  border-radius: 50%; /* Make the element circular */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); /* Add shadow */
+  border: none; /* Remove default border */
+}
+
+/* Plus icon button styles */
+.plus-icon {
+  background-color: #4CAF50; /* Button background color for add-task */
+}
+
+/* Styles for the horizontal part of the plus icon */
+.plus-icon::before,
+.plus-icon::after {
+  content: ''; /* Empty content for the pseudo-elements */
+  position: absolute;
+  background-color: #fff; /* Icon color */
+}
+
+/* Horizontal part of the plus icon */
+.plus-icon::before {
+  width: 60%; /* Width of the horizontal part of the "+" */
+  height: 10%; /* Height of the horizontal part of the "+" */
+}
+
+/* Vertical part of the plus icon */
+.plus-icon::after {
+  width: 10%; /* Width of the vertical part of the "+" */
+  height: 60%; /* Height of the vertical part of the "+" */
+}
+
+/* Remove task button styles */
+.remove-task {
+  background-color: #F44336; /* Button background color for remove-task */
+  width: 25px; /* 50% smaller width */
+  height: 25px; /* 50% smaller height */
+}
+
+/* Styles for the horizontal line of the remove task icon */
+.remove-task::before {
+  content: ''; /* Empty content for the pseudo-elements */
+  position: absolute;
+  background-color: #fff; /* Icon color */
+  width: 60%; /* Width of the horizontal line for "-" */
+  height: 10%; /* Height of the horizontal line for "-" */
+}
+
+/* Placeholder text styles */
+::placeholder{
+  font-family: 'Major Mono Display', monospace;
+}
+
+/* Root element styles */
+#root {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  max-width: 100%; /* Add maximum width to prevent container from being wider than the screen */
+}
+
+/* Media query for tablet devices */
+@media (max-width: 768px) {
+  #root {
+    width: 90%; /* Adjust container width to fit tablets */
+  }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 480px) {
+  #root {
+    width: 90%; /* Adjust container width to fit mobile devices */
+  }
 }

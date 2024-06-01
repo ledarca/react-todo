@@ -13,7 +13,7 @@ const InputWithLabel = ({ id, children, value, onChange }) => {
    return (
     <>
       <label htmlFor={id}>{children}</label> 
-      <input id={id} type="text" name="title" value={value} onChange={onChange} ref={inputRef} />
+      <input id={id} type="text" name="title" value={value} onChange={onChange} ref={inputRef} placeholder="New task..."/>
     </>
   );
 }
