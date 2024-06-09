@@ -4,8 +4,6 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
 
-/* Define application styles here */
-
 body {
   font-family: 'Major Mono Display', monospace;
   background: linear-gradient(-45deg, #385DA6, #6C7A8C, #5A90BF, #444c4f,  #385DA6);
@@ -13,6 +11,8 @@ body {
   animation: gradient 15s ease forwards;
   margin: 0;
   padding: 0;
+  justify-content: center; /*use for center root*/
+  align-items: center; /*use for center root*/
 }
 
 /* Animation for gradient background */
@@ -219,16 +219,6 @@ footer {
 /* Placeholder text styles */
 ::placeholder{
   font-family: 'Major Mono Display', monospace;
-}
-
-/* Root element styles */
-#root {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  max-width: 100%; /* Add maximum width to prevent container from being wider than the screen */
 }
 
 /* Media query for tablet devices */
