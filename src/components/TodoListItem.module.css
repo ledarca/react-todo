@@ -1,0 +1,12 @@
+/* TodoListItem.module.css */
+
+.todoItem {
+  display: flex; /* Utilizamos flexbox para alinear los elementos */
+  justify-content: space-between; /* Espacio entre los elementos */
+  align-items: center; /* Centra verticalmente los elementos */
+  margin-top: 20px;
+}
+
+
+
+
