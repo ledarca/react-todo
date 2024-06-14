@@ -221,6 +221,16 @@ footer {
   font-family: 'Major Mono Display', monospace;
 }
 
+/*botton toggle sort order*/
+.order{
+  margin-top: 20px;
+  background: #4CAF50;
+}
+
+.order:hover{
+  background-color: #45a049;
+}
+
 /* Media query for tablet devices */
 @media (max-width: 768px) {
   #root {
@@ -234,3 +244,4 @@ footer {
     width: 90%; /* Adjust container width to fit mobile devices */
   }
 }
+
