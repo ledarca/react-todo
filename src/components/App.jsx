@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
+import { TodoContainer } from './TodoContainer';  
+
 
 const airtableURL = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 
@@ -116,6 +118,7 @@ function App() {
             <>
               <header><h1>To do list</h1></header>              
               <main>
+              <TodoContainer />
               <AddTodoForm onAddTodo={addTodo} />
               {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
               </main>
