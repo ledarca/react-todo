@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TodoListItem from './TodoListItem';
 
-function TodoList({ todoList, onRemoveTodo }) {
+const TodoList = React.memo(({ todoList, onRemoveTodo }) => {
   return (
     <div className="task-section">
       <ul>
-        {todoList.map((todo) => (
+        {todoList.map(todo => (
           <TodoListItem key={todo.id} id={todo.id} title={todo.title} onRemoveTodo={onRemoveTodo} />
         ))}
       </ul>
     </div>
   );
-}
+});
 
 TodoList.propTypes = {
   todoList: PropTypes.arrayOf(
@@ -25,4 +25,5 @@ TodoList.propTypes = {
 };
 
 export default TodoList;
+
 
