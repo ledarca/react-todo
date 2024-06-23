@@ -51,6 +51,25 @@ header {
   padding-bottom: 10px;
 }
 
+header > nav {
+  cursor: pointer;
+}
+header > nav ul li {  
+    display: block; /* Para que el enlace ocupe todo el ancho del li */
+}
+
+header > nav ul li a {
+    display: block; /* Ocupar todo el espacio del li */
+    text-decoration: none; /* Quitar subrayado por defecto */
+    color: #333; /* Color de texto para los enlaces */
+}
+
+header > nav ul li:hover {
+  background-color: #eee;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra al hacer hover */
+}
+
+
 /* Main heading styles */
 h1 {
   font-size: 24px;
@@ -64,6 +83,16 @@ h2{
   font-weight: 200;
   margin: 0;
   color: #817e7e;
+  width: 95%;
+  word-wrap: break-word;
+}
+p{
+  font-size: 14px;
+  color: #817e7e;
+}
+
+strong{
+  color:#646cff;
 }
 
 /* Styles for input section */
@@ -156,6 +185,9 @@ footer {
   color: #888;
   border-top: 2px solid #eaeaea;
   margin-top: 20px;
+}
+footer p{
+  font-size: small;
 }
 
 /* Button and remove-task styles */
