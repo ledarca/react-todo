@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 
 
 const InputWithLabel = ({ id, children, value, onChange }) => {
-  //console.log('Componente InputWithLabel renderizado');
   const inputRef = useRef(null);
 
   useEffect(() => {
-    //console.log('useEffect ejecutado');
     inputRef.current.focus();
-  //  inputRef.current.style.border = '5px solid red'; I use this, just to highlight the focus
   }, []);
   
    return (
