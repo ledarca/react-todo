@@ -22,7 +22,7 @@ function AddTodoForm({ onAddTodo }) {
 
   return (
     <form onSubmit={handleAddTodo} className='input-section'>
-      <InputWithLabel id={todoTitle} value={todoTitle} onChange={handleTitleChange} ></InputWithLabel>
+      <InputWithLabel id="todoTitle" value={todoTitle} onChange={handleTitleChange} ></InputWithLabel>
       <button type="submit" id="add-task" className="plus-icon">Add</button>
     </form>
   );
