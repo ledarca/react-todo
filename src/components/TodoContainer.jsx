@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
-const App = () => {
+const App = ({ tableName }) => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState('asc'); // Initial ascending order
-  const [tableName, setTableName] = useState('Default'); 
 
   useEffect(() => {
     fetchData(); // Load data at the start
   }, [tableName, sortOrder]); // Dependency to reload data when tableName or sortOrder changes
+
+  useEffect(() => {
+    const storedTodoList = JSON.parse(localStorage.getItem('todoList'));
+    if (storedTodoList) {
+      setTodoList(storedTodoList);
+    }
+  }, []); // Load todoList from localStorage on initial render
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -32,6 +38,7 @@ const App = () => {
         completedAt: record.fields.completedAt,
       }));
       setTodoList(sortedTodos);
+      localStorage.setItem('todoList', JSON.stringify(sortedTodos)); // Update localStorage
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -41,7 +48,7 @@ const App = () => {
 
   // Function to add a new task
   const addTodo = async (newTodo) => {
-    if (!newTodo.title.trim()) { //data validation
+    if (!newTodo.title.trim()) { // Data validation
       alert('Please enter a valid title for the assignment.');
       return;
     }
@@ -90,6 +97,7 @@ const App = () => {
       }
       const updatedTodoList = todoList.filter(todo => todo.id !== id);
       setTodoList(updatedTodoList);
+      localStorage.setItem('todoList', JSON.stringify(updatedTodoList)); // Update localStorage
     } catch (error) {
       console.error('Error removing todo:', error);
     }
@@ -116,4 +124,3 @@ App.propTypes = {
 };
 
 export default App;
-
