@@ -93,6 +93,9 @@ p{
 
 strong{
   color:#646cff;
+  word-wrap: break-word;
+  width: 40%;
+  margin-right: 10px;
 }
 
 /* Styles for input section */
